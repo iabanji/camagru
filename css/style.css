@@ -38,7 +38,7 @@ font-weight:600;
 
 #header{
 height:244px;
-background:url(img/banner.jpg) center no-repeat;
+background:url(../img/banner.jpg) center no-repeat;
 }
 
 #header-h1{
@@ -53,7 +53,7 @@ font-variant:small-caps;
 height:250px;
 margin:10px;
 text-align:center;
-background:url(img/highlight.jpg) left no-repeat;
+background:url(../img/highlight.jpg) left no-repeat;
 }
 
 #showcase p{
@@ -68,13 +68,13 @@ margin:0 10px 0 300px;
 width:780px;
 height:30px;
 margin:0 auto;
-background:url(img/top.jpg) top center no-repeat;
+background:url(../img/top.jpg) top center no-repeat;
 }
 
 #text{
 padding-top:10px;
 width:780px;
-background:url(img/back.jpg) repeat-y;
+background:url(../img/back.jpg) repeat-y;
 margin:0 auto;
 }
 
@@ -93,7 +93,7 @@ font:1.2em 'Trebuchet MS', Arial, Helvetica, sans-serif;
 }
 
 #footer{
-background:url(img/bottom.jpg) center no-repeat;
+background:url(../img/bottom.jpg) center no-repeat;
 height:50px;
 margin-top:-16px !important;
 margin-top:0px;

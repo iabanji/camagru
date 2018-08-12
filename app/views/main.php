@@ -9,7 +9,7 @@
 <div id="wrapper">
   <div id="nav">
     <ul>
-      <li><a href="/register">Registration</a></li>
+      <li><a href="/register">Sign Up</a></li>
       <li><a href="/login">Sign In</a></li>
     </ul>
   </div>
