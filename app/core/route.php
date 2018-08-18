@@ -19,15 +19,22 @@ class Route
 			$controllerName = 'Login';
 		else if ($routes[1] == 'register')
 			$controllerName = 'Register';
+		else if ($routes[1] == 'resetpass')
+		{
+			$controllerName = 'Login';
+			$action = 'resetPass';
+		}
 		else
 			$controllerName = 'User';
 
 		if (!empty($routes[2]))
 			$action = $routes[2];
 
-		$controllerPath = 'app/controllers/' . $controllerName . "Controller" . '.php';
+		$controllerPath = "app/controllers/" . $controllerName . "Controller" . '.php';
 		if (file_exists($controllerPath))
-			include $controllerPath;
+			include_once $controllerPath;
+		else
+			Route::ErrorPage404();
 
 		$controller = $controllerName . 'Controller';
 		$controller = new $controller;

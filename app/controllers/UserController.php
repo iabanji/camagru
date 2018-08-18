@@ -1,9 +1,14 @@
 <?php
 
-class MainController
+class UserController
 {
 	public function index()
 	{
 		//
+	}
+
+	public function registration()
+	{
+		
 	}
 }
