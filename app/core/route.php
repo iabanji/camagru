@@ -18,7 +18,11 @@ class Route
 		else if ($routes[1] == 'login')
 			$controllerName = 'Login';
 		else if ($routes[1] == 'register')
+		{
+			if ($_SERVER['REQUEST_METHOD'] === 'POST')
+				$action = 'register';
 			$controllerName = 'Register';
+		}
 		else if ($routes[1] == 'resetpass')
 		{
 			$controllerName = 'Login';
