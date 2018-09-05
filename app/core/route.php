@@ -16,12 +16,21 @@ class Route
 		else if ($routes[1] == '404')
 			$controllerName = '404';
 		else if ($routes[1] == 'login')
+		{
+			if ($_SERVER['REQUEST_METHOD'] === 'POST')
+				$action = 'login';
 			$controllerName = 'Login';
+		}
 		else if ($routes[1] == 'register')
 		{
 			if ($_SERVER['REQUEST_METHOD'] === 'POST')
 				$action = 'register';
 			$controllerName = 'Register';
+		}
+		else if (stristr($routes[1], 'activation'))
+		{
+			$controllerName = 'Register';
+			$action = 'activate';
 		}
 		else if ($routes[1] == 'resetpass')
 		{

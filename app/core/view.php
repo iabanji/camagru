@@ -2,8 +2,8 @@
 
 class View
 {
-	function generate($content_view, $template_view, $data = null)
+	function generate(/*$content_view, */$template_view, $data = null)
 	{
-		include 'application/views/'.$template_view;
+		include 'app/views/'.$template_view;
 	}
 }

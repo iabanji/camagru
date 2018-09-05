@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html>
 <head>
 	<meta charset="UTF-8">
@@ -8,8 +8,8 @@
 	<link rel="shortcut icon" href="http://vladmaxi.net/favicon.ico" type="image/x-icon">
 </head>
 
-<body>
-
+<body> -->
+<?php include "app/views/header.php"; ?>
   <div id="login">
     <div class="form-singup">
       <h1>Восстановить пароль</h1>
@@ -22,9 +22,7 @@
         <a href="/login">Уже зарегистрированы? Войти.</a></p>
       </fieldset>
     </div>
-</div>
-
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
-
-</body>
-</html>
+  </div>
+<?php include "app/views/footer.php"; ?>
+<!-- </body>
+</html> -->

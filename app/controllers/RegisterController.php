@@ -8,7 +8,7 @@ class RegisterController
 	{
 		if(isset($_SESSION['login']))
 			Route::redirectUrl("user" . $_SESSION['user_id']);
-		include "app/views/register.php";
+		View::generate('register.php');
 	}
 
 	public function register()
@@ -19,7 +19,25 @@ class RegisterController
 		if (empty($email) || empty($pass) || empty($name))
 			Route::redirectUrl();
 		$user = new User;
-		$user->addNewUser($email, $pass, $name);
-		Route::redirectUrl('login');
+		if ($user->isUniqUser($name, $email))
+		{
+			$user->addNewUser($email, $pass, $name);
+			Route::redirectUrl('login');
+		}
+		else
+			Route::redirectUrl('register');
+	}
+
+	public function activate()
+	{
+		if (!array_key_exists('act', $_GET))
+			Route::redirectUrl();
+		$act = $_GET['act'];
+		$user = new User;
+		$data = $user->getUserAct($act);
+		if (!$data || count($data) > 1)
+			Route::redirectUrl();
+		$user->updateAct($data['id']);
+		Route::redirectUrl($data['nik']);
 	}
 }
