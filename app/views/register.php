@@ -6,6 +6,7 @@
         <fieldset>
         <p class="login-msg"></p>
           <form action="/register" method="post">
+            <p><?php  if($message) echo $message; ?></p>
             <input type="email" name="email" placeholder="Введите Ваш email адрес..." required />
             <input type="password" name="pass" placeholder="Ваш сложный пароль..." required />
             <input type="text" name="name" placeholder="Имя пользователя" required />

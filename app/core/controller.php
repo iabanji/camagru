@@ -1,18 +1,11 @@
 <?php
 
 class Controller {
+
+	public $message;
 	
-	public $model;
-	public $view;
-	
-	function __construct()
+	function __construct($message=false)
 	{
-		//$this->view = new View();
-	}
-	
-	// действие (action), вызываемое по умолчанию
-	function action_index()
-	{
-		// todo
+		$this->message = $message;
 	}
 }

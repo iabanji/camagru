@@ -2,7 +2,7 @@
 
 require_once "app/models/user.php";
 
-class RegisterController
+class RegisterController extends Controller
 {
 	public function index()
 	{
@@ -17,7 +17,11 @@ class RegisterController
 		$pass = $_POST['pass'];
 		$name = $_POST['name'];
 		if (empty($email) || empty($pass) || empty($name))
-			Route::redirectUrl();
+		{
+			$this->message = "Присутствуют пустые поля!";
+			View::generate('register.php', $this->message);
+			exit();
+		}
 		$user = new User;
 		if ($user->isUniqUser($name, $email))
 		{
@@ -27,7 +31,11 @@ class RegisterController
 			Route::redirectUrl('login');
 		}
 		else
-			Route::redirectUrl('register');
+		{
+			$this->message = "Пользователь с таким именем или email уже существует!";
+			View::generate('register.php', $this->message);
+			exit();
+		}
 	}
 
 	public function activate()

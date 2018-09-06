@@ -4,6 +4,7 @@
           <h1>Авторизация</h1>
           <fieldset>
             <form action="" method="post">
+              <p><?php  if($message) echo $message; ?></p>
               <input type="email" name="email" placeholder="Email" required />
               <input type="password" name="pass" placeholder="Пароль" required />
               <input type="submit" value="ВОЙТИ" />

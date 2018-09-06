@@ -43,9 +43,12 @@ class User
 	public function isUniqUser($name, $email)
 	{
 		$db = new PDO('mysql:host=localhost;dbname=camagru;charset=utf8', 'root1', 'root1');
-		$data = $db->prepare("SELECT * FROM users WHERE nik=? OR WHERE email=?");
-		$data = $data->execute([$name, $email]);
-		if ($data)
+		$nik = $db->prepare("SELECT * FROM users WHERE nik=?");
+		$nik = $nik->execute([$name]);
+		$db = new PDO('mysql:host=localhost;dbname=camagru;charset=utf8', 'root1', 'root1');
+		$mail = $db->prepare("SELECT * FROM users WHERE email=?");
+		$mail = $mail->execute([$email]);
+		if ($mail || $nik)
 			return false;
 		return true;
 	}

@@ -1,7 +1,7 @@
 <?php
 require_once "app/models/user.php";
 
-class LoginController
+class LoginController extends Controller
 {
 	public function index()
 	{
@@ -30,7 +30,8 @@ class LoginController
 		$user = (new User)->isTruePass($email, $pass);
 		if (!$user || $user['status'] != '1')
 		{
-			Route::redirectUrl('login');
+			$this->message = "Неправильный пароль или такого пользователя не существует!";
+			View::generate('login.php', $this->message);
 			exit();
 		}
 		$_SESSION['login'] = $user['nik'];
