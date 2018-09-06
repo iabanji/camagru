@@ -36,9 +36,15 @@ class Route
 		{
 			$controllerName = 'Login';
 			$action = 'resetPass';
+			if ($_SERVER['REQUEST_METHOD'] === 'POST')
+				$action = 'changePass';
 		}
 		else
+		{
+			if ($route[2] == 'logout')
+				$action = 'logout';
 			$controllerName = 'User';
+		}
 
 		if (!empty($routes[2]))
 			$action = $routes[2];

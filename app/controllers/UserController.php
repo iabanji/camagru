@@ -4,11 +4,16 @@ class UserController
 {
 	public function index()
 	{
+		if(!isset($_SESSION['login']))
+			Route::redirectUrl('login');
 		echo "uhefoihohfoih111";
 	}
 
-	public function registration()
+	public function logout()
 	{
-		
+		if(!isset($_SESSION['login']))
+			Route::redirectUrl('login');
+		unset($_SESSION['login']);
+		Route::redirectUrl('login');
 	}
 }

@@ -32,11 +32,11 @@ class User
 		return $user;
 	}
 
-	public function updateAct($id)
+	public function updateAct($id, $st='1')
 	{
 		$db = new PDO('mysql:host=localhost;dbname=camagru;charset=utf8', 'root1', 'root1');
 		$sql = $db->prepare("UPDATE users SET status=? WHERE id=?");
-		$sql->execute(['1', $id]);
+		$sql->execute([$st, $id]);
 		return true;
 	}
 
@@ -57,8 +57,27 @@ class User
 		$user = $db->prepare("SELECT * FROM users WHERE email=?");
 		$user->execute([$email]); 
 		$user = $user->fetch(PDO::FETCH_ASSOC);
-		if (!$user || $pass != $user['password'])
+		if (!$user || $pass != $user['password'] || $user['status'] != '1')
 			return false;
 		return $user;
+	}
+
+	public function getUserByEmail($email)
+	{
+		$db = new PDO('mysql:host=localhost;dbname=camagru;charset=utf8', 'root1', 'root1');
+		$user = $db->prepare("SELECT * FROM users WHERE email=?");
+		$user->execute([$email]);
+		$user = $user->fetch(PDO::FETCH_ASSOC);
+		return $user;
+	}
+
+	public function sendMailRegister($email, $act)
+	{
+		$subj = 'Confirm registration Camagru!';
+		$message = 'Confirm your registration, click the link:  ' . "http://camagru/activation?act=" . $act;
+		$headers = 'From: webmaster@example.com' . "\r\n" .
+				    'Reply-To: webmaster@example.com' . "\r\n" .
+				    'X-Mailer: PHP/' . phpversion();
+		mail($email, $subj, $message, $headers);
 	}
 }

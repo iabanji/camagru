@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 
 /*if (!session_exist())*/
 session_start();

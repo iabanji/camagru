@@ -15,7 +15,7 @@
       <h1>Восстановить пароль</h1>
       <fieldset>
         <form action="" method="post">
-          <input type="email" placeholder="Введите Ваш Email" required />
+          <input type="email" name="email" placeholder="Введите Ваш Email" required />
           <input type="submit" value="Отправить" />
         </form>
         <p><a href="/register" class="flipper">Нет аккаунта? Регистрация.</a><br>

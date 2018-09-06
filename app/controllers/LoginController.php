@@ -6,14 +6,20 @@ class LoginController
 	public function index()
 	{
 		if(isset($_SESSION['login']))
+		{
 			Route::redirectUrl($_SESSION['login']);
+			exit();
+		}
 		View::generate('login.php');
 	}
 
 	public function resetPass()
 	{
 		if(isset($_SESSION['login']))
+		{
 			Route::redirectUrl($_SESSION['login']);
+			exit();
+		}
 		View::generate('reset_pass.php');
 	}
 
@@ -22,12 +28,32 @@ class LoginController
 		$email = $_POST['email'];
 		$pass = $_POST['pass'];
 		$user = (new User)->isTruePass($email, $pass);
-		if (!$user)
+		if (!$user || $user['status'] != '1')
 		{
 			Route::redirectUrl('login');
 			exit();
 		}
 		$_SESSION['login'] = $user['nik'];
 		Route::redirectUrl($_SESSION['login']);
+	}
+
+	public function changePass()
+	{
+		$email = $_POST['email'];
+		$user = new User();
+		$data = $user->getUserByEmail($email);
+		if(isset($_SESSION['login']))
+		{
+			Route::redirectUrl($_SESSION['login']);
+			exit();
+		}
+		if (!$data)
+		{
+			Route::redirectUrl('resetpass');
+			exit();
+		}
+		$user->updateAct($data['id'], '0');
+		$user->sendMailRegister($email, $data['activation']);
+		Route::redirectUrl('login');
 	}
 }

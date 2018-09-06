@@ -36,7 +36,7 @@
 			right: 200px;
 		}
 		#content {
-			height: 1000px;
+			height: 713px;
 		}
 		#footer {
 			position: relative;
@@ -51,7 +51,7 @@
 	        margin-right: -50%;
 		}
 		#login {
-			height: 1000px;
+			height: 472px;
 		}
 	</style>
 </head>

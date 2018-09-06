@@ -7,7 +7,7 @@ class RegisterController
 	public function index()
 	{
 		if(isset($_SESSION['login']))
-			Route::redirectUrl("user" . $_SESSION['user_id']);
+			Route::redirectUrl($_SESSION['login']);
 		View::generate('register.php');
 	}
 
@@ -22,6 +22,8 @@ class RegisterController
 		if ($user->isUniqUser($name, $email))
 		{
 			$user->addNewUser($email, $pass, $name);
+			$data = $user->getUserByEmail($email);
+			$user->sendMailRegister($email, $data['activation']);
 			Route::redirectUrl('login');
 		}
 		else
@@ -30,14 +32,28 @@ class RegisterController
 
 	public function activate()
 	{
+		if(isset($_SESSION['login']))
+			Route::redirectUrl($_SESSION['login']);
 		if (!array_key_exists('act', $_GET))
+		{
 			Route::redirectUrl();
+			exit();
+		}
 		$act = $_GET['act'];
 		$user = new User;
 		$data = $user->getUserAct($act);
-		if (!$data || count($data) > 1)
+		if (!$data)
+		{
 			Route::redirectUrl();
+			exit();
+		}
+		if ($data['status'] != '0')
+		{
+			Route::redirectUrl('login');
+			exit();
+		}
 		$user->updateAct($data['id']);
+		$_SESSION['login'] = $data['nik'];
 		Route::redirectUrl($data['nik']);
 	}
 }
