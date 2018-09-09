@@ -6,7 +6,7 @@ class UserController extends Controller
 	{
 		if(!isset($_SESSION['login']))
 			Route::redirectUrl('login');
-		echo "uhefoihohfoih111";
+		View::generate('user.php');
 	}
 
 	public function logout()

@@ -41,13 +41,16 @@ class Route
 		}
 		else
 		{
-			if ($route[2] == 'logout')
-				$action = 'logout';
+			if (isset($routes[2]))
+			{
+				if ($routes[2] == 'logout')
+					$action = 'logout';
+			}
 			$controllerName = 'User';
 		}
 
-		if (!empty($routes[2]))
-			$action = $routes[2];
+		/*if (!empty($routes[2]))
+			$action = $routes[2];*/
 
 		$controllerPath = "app/controllers/" . $controllerName . "Controller" . '.php';
 		if (file_exists($controllerPath))

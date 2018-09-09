@@ -1,0 +1,128 @@
+* {
+	padding: 0;
+	margin: 0;
+}
+
+body {
+	background-color: #E6E6FA;
+}
+
+.booth {
+  width: 400px;
+  background: #ccc;
+  border: 10px solid #ddd;
+  margin: 0 auto;
+}
+
+.booth-capture-button {
+  display: block;
+  margin: 10px 0;
+  padding: 10px 20px;
+  background: cornflowerblue;
+  color: #fff;
+  text-align: center;
+  text-decoration: none;
+}
+
+#canvas {
+  display: none;
+}
+
+#header {
+		position: relative;
+		height: 75px;
+		background-color: #B0E0E6;
+}
+
+#camera {
+	position: absolute;
+	left: 80px;
+	top: 130px;
+	width: 700px;
+	height: 700px;
+	background-color: white;
+}
+
+#btn {
+	position: absolute;
+	top: 800px;
+	left: 300px;
+	font-size: 16px;
+}
+
+#btn-stop {
+	position: absolute;
+	top: 800px;
+	left: 400px;
+	font-size: 16px;
+}
+
+#btn-save {
+	position: absolute;
+	top: 800px;
+	left: 500px;
+	font-size: 16px;
+}
+
+#header h1 {
+		text-decoration: none;
+		position: absolute;
+		left: 25px;
+		bottom: 6px;
+}
+
+#header h1 a {
+		text-decoration: none; 
+}
+.a {
+		text-decoration: none;
+		color: blue;
+		position: absolute;
+		right: 25px;
+		bottom: 22px;
+}
+
+.icon {
+		text-decoration: none;
+		color: blue;
+		position: absolute;
+		right: 25px;
+		bottom: 6px;
+}
+
+#a1 {
+		right: 110px;
+}
+
+#icon1 {
+		right: 310px;
+}
+
+#icon2 {
+		right: 210px;
+}
+
+#icon3 {
+		right: 110px;
+}
+
+#content {
+		height: 713px;
+}
+
+#footer {
+		position: relative;
+		bottom: -110px;
+		height: 75px;
+		background-color: #B0E0E6;
+}
+
+#footer p {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		margin-right: -50%;
+}
+#login {
+		height: 472px;
+}
