@@ -35,6 +35,7 @@ class LoginController extends Controller
 			exit();
 		}
 		$_SESSION['login'] = $user['nik'];
+		$_SESSION['user_id'] = $user['id'];
 		Route::redirectUrl($_SESSION['login']);
 	}
 

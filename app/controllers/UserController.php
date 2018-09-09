@@ -14,6 +14,7 @@ class UserController extends Controller
 		if(!isset($_SESSION['login']))
 			Route::redirectUrl('login');
 		unset($_SESSION['login']);
+		unset($_SESSION['id']);
 		Route::redirectUrl('login');
 	}
 }
