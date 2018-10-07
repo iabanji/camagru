@@ -45,6 +45,8 @@ class Route
 			{
 				if ($routes[2] == 'logout')
 					$action = 'logout';
+				if ($routes[2] == 'savePhoto')
+					$action = 'savePhoto';
 			}
 			$controllerName = 'User';
 		}

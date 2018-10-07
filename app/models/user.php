@@ -83,4 +83,33 @@ class User
 				    'X-Mailer: PHP/' . phpversion();
 		mail($email, $subj, $message, $headers);
 	}
+
+	public function addNewPhoto($photo, $user_id)
+	{
+		try {
+			$db = new PDO("mysql:host=localhost;dbname=camagru", 'root1', 'root1');
+			$smt = $db->prepare('INSERT INTO photos (user_id, url) VALUES (:user_id, :url)');
+			$smt->bindParam(':user_id', $user_id);
+			$smt->bindParam(':url', $photo);
+
+			$a = $smt->execute();
+			if ($a == false)
+			{
+				echo "false";
+				exit();
+			}
+
+			return true;
+		}
+		catch(\Exception $e)
+		{
+			var_dump($e);
+			exit();
+		}
+	}
+
 }
+
+
+
+

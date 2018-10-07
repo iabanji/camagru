@@ -1,5 +1,7 @@
 <?php
 
+require_once "app/models/user.php";
+
 class UserController extends Controller
 {
 	public function index()
@@ -14,7 +16,13 @@ class UserController extends Controller
 		if(!isset($_SESSION['login']))
 			Route::redirectUrl('login');
 		unset($_SESSION['login']);
-		unset($_SESSION['id']);
+		unset($_SESSION['user_id']);
 		Route::redirectUrl('login');
+	}
+	public function savePhoto()
+	{
+		$photo = $_POST['photo'];
+		(new User)->addNewPhoto($photo, $_SESSION['user_id']);
+		Route::redirectUrl();
 	}
 }
