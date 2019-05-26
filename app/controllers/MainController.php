@@ -1,5 +1,7 @@
 <?php
 
+require_once "app/models/user.php";
+
 class MainController extends Controller
 {
 	public function index()
@@ -7,6 +9,7 @@ class MainController extends Controller
 		if (isset($_SESSION['login']))
 			Route::redirectUrl($_SESSION['login']);
 		//include 'app/views/main.php';
-		View::generate('main.php');
+		$photos = (new User)->getAllPhotos();
+		View::generate('main.php', false, $photos);
 	}
 }

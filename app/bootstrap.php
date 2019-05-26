@@ -1,8 +1,8 @@
 <?php
 
 define('DB_SERVER', 'localhost');
-define('DB_USERNAME', 'root1');
-define('DB_PASSWORD', 'root1');
+define('DB_USERNAME', 'root');
+define('DB_PASSWORD', 'qwerty123');
 define('DB_DATABASE', 'camagru');
 
 require_once 'core/model.php';

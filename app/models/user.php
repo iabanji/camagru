@@ -6,12 +6,12 @@ class User
 
 	function __construct()
 	{
-		$this->db = new PDO('mysql:host=localhost;dbname=camagru;charset=utf8', 'root1', 'root1');
+		$this->db = new PDO('mysql:host=localhost;dbname=camagru;charset=utf8', DB_USERNAME, DB_PASSWORD);
 	}
 
 	public function addNewUser($email, $pass, $name)
 	{
-		$db = new PDO('mysql:host=localhost;dbname=camagru;charset=utf8', 'root1', 'root1');
+		$db = new PDO('mysql:host=localhost;dbname=camagru;charset=utf8', DB_USERNAME, DB_PASSWORD);
 		$smt = $db->prepare("INSERT INTO users(nik, email, password, activation, status) VALUES(:name, :email, :pass, :act, :status)");
 		$activation = md5($email . time());
 		$smt->execute(array(
@@ -25,7 +25,7 @@ class User
 
 	public function getUserAct($act)
 	{
-		$db = new PDO('mysql:host=localhost;dbname=camagru;charset=utf8', 'root1', 'root1');
+		$db = new PDO('mysql:host=localhost;dbname=camagru;charset=utf8', DB_USERNAME, DB_PASSWORD);
 		$user = $db->prepare("SELECT * FROM users WHERE activation=?");
 		$user->execute([$act]); 
 		$user = $user->fetch(PDO::FETCH_ASSOC);
@@ -34,7 +34,7 @@ class User
 
 	public function updateAct($id, $st='1')
 	{
-		$db = new PDO('mysql:host=localhost;dbname=camagru;charset=utf8', 'root1', 'root1');
+		$db = new PDO('mysql:host=localhost;dbname=camagru;charset=utf8', DB_USERNAME, DB_PASSWORD);
 		$sql = $db->prepare("UPDATE users SET status=? WHERE id=?");
 		$sql->execute([$st, $id]);
 		return true;
@@ -42,10 +42,10 @@ class User
 
 	public function isUniqUser($name, $email)
 	{
-		$db = new PDO('mysql:host=localhost;dbname=camagru;charset=utf8', 'root1', 'root1');
+		$db = new PDO('mysql:host=localhost;dbname=camagru;charset=utf8', DB_USERNAME, DB_PASSWORD);
 		$nik = $db->prepare("SELECT * FROM users WHERE nik=?");
 		$nik = $nik->execute([$name]);
-		$db = new PDO('mysql:host=localhost;dbname=camagru;charset=utf8', 'root1', 'root1');
+		$db = new PDO('mysql:host=localhost;dbname=camagru;charset=utf8', DB_USERNAME, DB_PASSWORD);
 		$mail = $db->prepare("SELECT * FROM users WHERE email=?");
 		$mail = $mail->execute([$email]);
 		if ($mail || $nik)
@@ -56,7 +56,7 @@ class User
 	public function isTruePass($email, $password)
 	{
 		$pass = md5($password);
-		$db = new PDO('mysql:host=localhost;dbname=camagru;charset=utf8', 'root1', 'root1');
+		$db = new PDO('mysql:host=localhost;dbname=camagru;charset=utf8', DB_USERNAME, DB_PASSWORD);
 		$user = $db->prepare("SELECT * FROM users WHERE email=?");
 		$user->execute([$email]); 
 		$user = $user->fetch(PDO::FETCH_ASSOC);
@@ -67,7 +67,7 @@ class User
 
 	public function getUserByEmail($email)
 	{
-		$db = new PDO('mysql:host=localhost;dbname=camagru;charset=utf8', 'root1', 'root1');
+		$db = new PDO('mysql:host=localhost;dbname=camagru;charset=utf8', DB_USERNAME, DB_PASSWORD);
 		$user = $db->prepare("SELECT * FROM users WHERE email=?");
 		$user->execute([$email]);
 		$user = $user->fetch(PDO::FETCH_ASSOC);
@@ -87,7 +87,7 @@ class User
 	public function addNewPhoto($photo, $user_id)
 	{
 		try {
-			$db = new PDO("mysql:host=localhost;dbname=camagru", 'root1', 'root1');
+			$db = new PDO("mysql:host=localhost;dbname=camagru", DB_USERNAME, DB_PASSWORD);
 			$smt = $db->prepare('INSERT INTO photos (user_id, url) VALUES (:user_id, :url)');
 			$smt->bindParam(':user_id', $user_id);
 			$smt->bindParam(':url', $photo);
@@ -106,6 +106,15 @@ class User
 			var_dump($e);
 			exit();
 		}
+	}
+
+	public function getAllPhotos()
+	{
+		$db = new PDO('mysql:host=localhost;dbname=camagru;charset=utf8', DB_USERNAME, DB_PASSWORD);
+		$user = $db->prepare("SELECT url FROM photos");
+		$user->execute();
+		$user = $user->fetchAll(PDO::FETCH_ASSOC);
+		return $user;
 	}
 
 }

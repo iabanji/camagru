@@ -39,6 +39,10 @@ class Route
 			if ($_SERVER['REQUEST_METHOD'] === 'POST')
 				$action = 'changePass';
 		}
+		else if ($routes[1] == 'settings')
+		{
+
+		}
 		else
 		{
 			if (isset($routes[2]))

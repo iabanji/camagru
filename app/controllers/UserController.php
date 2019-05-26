@@ -8,7 +8,8 @@ class UserController extends Controller
 	{
 		if(!isset($_SESSION['login']))
 			Route::redirectUrl('login');
-		View::generate('user.php');
+		$photos = (new User)->getAllPhotos();
+		View::generate('user.php', false, $photos);
 	}
 
 	public function logout()
@@ -19,6 +20,7 @@ class UserController extends Controller
 		unset($_SESSION['user_id']);
 		Route::redirectUrl('login');
 	}
+
 	public function savePhoto()
 	{
 		$photo = $_POST['photo'];

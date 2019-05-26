@@ -11,7 +11,8 @@ mozGetUserMedia || navigator.msGetUserMedia;
    video: true,
    audio: false
   }, function(stream) {
-   video.src = vendorUrl.createObjectURL(stream);
+   //video.src = vendorUrl.createObjectURL(stream);
+   video.srcObject=stream;
    video.play();
   }, function(error) {
    alert('Ошибка! Что-то пошло не так, попробуйте позже.');
