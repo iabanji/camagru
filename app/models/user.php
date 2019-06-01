@@ -117,6 +117,15 @@ class User
 		return $user;
 	}
 
+	public function getPhotosById($id)
+	{
+		$db = new PDO('mysql:host=localhost;dbname=camagru;charset=utf8', DB_USERNAME, DB_PASSWORD);
+		$user = $db->prepare("SELECT url FROM photos WHERE user_id=?");
+		$user->execute([$id]);
+		$user = $user->fetchAll(PDO::FETCH_ASSOC);
+		return $user;
+	}
+
 }
 
 

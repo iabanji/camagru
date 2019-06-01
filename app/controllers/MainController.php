@@ -10,6 +10,6 @@ class MainController extends Controller
 			Route::redirectUrl($_SESSION['login']);
 		//include 'app/views/main.php';
 		$photos = (new User)->getAllPhotos();
-		View::generate('main.php', false, $photos);
+		(new View)->generate('main.php', false, $photos);
 	}
 }

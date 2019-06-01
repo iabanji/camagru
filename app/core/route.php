@@ -39,18 +39,27 @@ class Route
 			if ($_SERVER['REQUEST_METHOD'] === 'POST')
 				$action = 'changePass';
 		}
-		else if ($routes[1] == 'settings')
-		{
-
-		}
 		else
 		{
 			if (isset($routes[2]))
 			{
+				if(!isset($_SESSION['login']) || $_SESSION['login'] != $routes[1])
+					Route::redirectUrl('login');
 				if ($routes[2] == 'logout')
 					$action = 'logout';
 				if ($routes[2] == 'savePhoto')
 					$action = 'savePhoto';
+				if ($routes[2] == 'settings')
+					$action = 'settings';
+				if ($routes[2] == 'showMyPhotos')
+					$action = 'showMyPhotos';
+			}
+			if ($_SERVER['REQUEST_METHOD'] === 'POST')
+			{
+				if(!isset($_SESSION['login']) || $_SESSION['login'] != $routes[1])
+					Route::redirectUrl('login');
+				if ($routes[2] == "changePass")
+					$action = "changePass";
 			}
 			$controllerName = 'User';
 		}

@@ -16,6 +16,11 @@ body {
   margin: 20px 100px;
 }
 
+.both>img {
+	max-width:400px;
+	max-height: 200px;
+}
+
 .booth-capture-button {
   display: block;
   margin: 10px 0;

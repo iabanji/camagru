@@ -10,18 +10,4 @@
         <!-- <input type="submit" value="save" id="sub" disabled> -->
         <input type="submit" id="" value="Сохранить" class="booth-capture-button">
         </form>
-      </div>
-
-      <div class="div-foto">
-        <?php
-          $url = 'url';
-          $i = 0;
-          foreach ($data as $key => $value) {
-            if ($i > 8)
-              break;
-            echo "<img src='$value[$url]'>";
-            $i++;
-          }
-        ?>
-      </div>
     </div>

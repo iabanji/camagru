@@ -9,7 +9,7 @@ class UserController extends Controller
 		if(!isset($_SESSION['login']))
 			Route::redirectUrl('login');
 		$photos = (new User)->getAllPhotos();
-		View::generate('user.php', false, $photos);
+		(new View)->generate('user.php', false, $photos);
 	}
 
 	public function logout()
@@ -26,5 +26,26 @@ class UserController extends Controller
 		$photo = $_POST['photo'];
 		(new User)->addNewPhoto($photo, $_SESSION['user_id']);
 		Route::redirectUrl();
+	}
+
+	public function settings()
+	{
+		if(!isset($_SESSION['login']))
+			Route::redirectUrl('login');
+		$photos = (new User)->getAllPhotos();
+		(new View)->generate('settings.php', false, $photos);
+	}
+
+	public function showMyPhotos()
+	{
+		if(!isset($_SESSION['login']))
+			Route::redirectUrl('login');
+		$photos = (new User)->getPhotosById($_SESSION['user_id']);
+		(new View)->generate('show-user-photos.php', false, $photos);
+	}
+
+	public function changePass(){
+		$pass = $_POST["pass"];
+		echo "123";
 	}
 }
